@@ -9,21 +9,11 @@ const initialState: PhotosState = {
 }
 
 const reducer: Reducer<PhotosState> = (state = initialState, action) => {
-    debugger
+    
     switch (action.type) {
         case PhotosActionTypes.FETCH_PHOTOS_REQUEST: {
-            debugger
-            return {
-                ...state, isLoading: true, data: [
-                    {
-                        albumId: 3,
-                        id: 1,
-                        title: 'string',
-                        url: 'string',
-                        thumbnailUrl: 'string',
-                    }
-                ]
-            }
+            
+            return { ...state, isLoading: true }
         }
 
         case PhotosActionTypes.FETCH_PHOTOS_SUCCESS: {

@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore'
 
 const initialState: any = {}
-debugger
+
 const store = configureStore(window.history, initialState)
 
 ReactDOM.render(

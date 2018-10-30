@@ -30,12 +30,12 @@ type AllProps = PropsFromDispatch & PropsFromState & OwnProps
 
 class App extends Component<AllProps> {
   componentDidMount() {
-    debugger
+    
     this.props.fetchPhotosRequest()
   }
 
   public render() {
-    debugger
+    
     const { store, data } = this.props
     console.log(this.props)
     return (
@@ -55,7 +55,7 @@ class App extends Component<AllProps> {
 }
 
 const mapStateToProps = ({ photos }: StoreState) => {
-  debugger
+  
   return {
     isLoading: photos.isLoading,
     errors: photos.errors,
@@ -64,7 +64,7 @@ const mapStateToProps = ({ photos }: StoreState) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  debugger
+  
   return {
     fetchPhotosRequest: () => dispatch(fetchPhotosRequest())
   }
