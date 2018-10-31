@@ -22,4 +22,4 @@ yarn-error.log*
 
 
 # src env
-/src/.env
+.env
