@@ -6,21 +6,21 @@ import { History } from 'history';
 
 import './App.css';
 import { StoreState } from './store/index'
-import { Photos } from './store/placeholderJson/1types'
-import { fetchPhotosRequest } from './store/placeholderJson/2actions'
+import { Business } from './store/placeholderJson/1types'
+import { fetchBusinessesRequest } from './store/placeholderJson/2actions'
 
 import Routes from './routes'
 
 // separate state props and dispatch props to their own interfaces
 interface PropsFromState {
   isLoading: boolean
-  data: Photos[],
+  data: Business[]
   errors?: string
 }
 
 // map dispatch type to props
 interface PropsFromDispatch {
-  fetchPhotosRequest: typeof fetchPhotosRequest
+  fetchBusinessesRequest: typeof fetchBusinessesRequest
 }
 
 // additional component props get their own interface
@@ -34,7 +34,7 @@ type AllProps = PropsFromDispatch & PropsFromState & OwnProps
 
 class App extends Component<AllProps> {
   componentDidMount() {
-    this.props.fetchPhotosRequest()
+    this.props.fetchBusinessesRequest()
   }
 
   public render() {
@@ -61,19 +61,19 @@ class App extends Component<AllProps> {
   }
 }
 
-const mapStateToProps = ({ photos }: StoreState) => {
+const mapStateToProps = ({ businesses }: StoreState) => {
 
   return {
-    isLoading: photos.isLoading,
-    errors: photos.errors,
-    data: photos.data
+    isLoading: businesses.isLoading,
+    errors: businesses.errors,
+    data: businesses.data
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
 
   return {
-    fetchPhotosRequest: () => dispatch(fetchPhotosRequest())
+    fetchBusinessesRequest: () => dispatch(fetchBusinessesRequest())
   }
 }
 

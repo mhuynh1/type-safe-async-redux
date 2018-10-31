@@ -1,16 +1,16 @@
 import { action } from 'typesafe-actions';
-import { Photos, PhotosActionTypes } from './1types';
+import { Business, BusinessActionTypes } from './1types';
 
 
 // action helper from 'typesafe-actions' will help write type-safe Redux actions
-export const fetchPhotosRequest = () => {
+export const fetchBusinessesRequest = () => {
     
-    return action(PhotosActionTypes.FETCH_PHOTOS_REQUEST)
+    return action(BusinessActionTypes.FETCH_BUSINESSES_REQUEST)
 }
 
-export const fetchPhotosSuccess = (data: Photos[]) => {
+export const fetchBusinessesSuccess = (data: Business[]) => {
     
-    return action(PhotosActionTypes.FETCH_PHOTOS_SUCCESS, data)
+    return action(BusinessActionTypes.FETCH_BUSINESSES_SUCCESS, data)
 }
 
-export const fetchPhotosFailure = (err: string) => action(PhotosActionTypes.FETCH_PHOTOS_FAILURE, err)
+export const fetchBusinessesFailure = (err: string) => action(BusinessActionTypes.FETCH_BUSINESSES_FAILURE, err)

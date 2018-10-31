@@ -1,36 +1,36 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
-import { PhotosActionTypes } from './1types';
-import { fetchPhotosSuccess, fetchPhotosFailure } from './2actions';
+import { BusinessActionTypes } from './1types';
+import { fetchBusinessesSuccess, fetchBusinessesFailure } from './2actions';
 import apiCall from '../../utils/apiCall';
 
-const API_ENDPOINT = 'https://jsonplaceholder.typicode.com';
+const API_ENDPOINT = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3';
 
 function* handleFetch() {
     try {
         // 1 use redux-saga's call() to call your async functions
-        const res = yield call(apiCall, 'GET', API_ENDPOINT, '/posts');
+        const res = yield call(apiCall, 'GET', API_ENDPOINT, '/businesses/search?location=los angeles&term=pizza');
 
         if (res.error) {
-            yield put(fetchPhotosFailure(res.error))
+            yield put(fetchBusinessesFailure(res.error))
         } else {
-            yield put(fetchPhotosSuccess(res))
+            yield put(fetchBusinessesSuccess(res.businesses))
         }
     } catch (err) {
         if (err instanceof Error) {
-            yield put(fetchPhotosFailure(err.stack!))
+            yield put(fetchBusinessesFailure(err.stack!))
         } else {
-            put(fetchPhotosFailure('unknown error has occured.'))
+            put(fetchBusinessesFailure('unknown error has occured.'))
         }
     }
 }
 
-// 2 use redux-saga's take*() functions to watch Redux for specific action type(in this case, all 'FETCH_PHOTOS_REQUEST' type), then run the handleFetch saga
+// 2 use redux-saga's take*() functions to watch Redux for specific action type(in this case, all 'FETCH_BUSINESSES_REQUEST' type), then run the handleFetch saga
 function* watchFetchRequest() {
-    yield takeEvery(PhotosActionTypes.FETCH_PHOTOS_REQUEST, handleFetch)
+    yield takeEvery(BusinessActionTypes.FETCH_BUSINESSES_REQUEST, handleFetch)
 }
 
 // 2 use the fork() function to split saga into multiple watchers
-export default function* photosSaga() {
+export default function* buinessSaga() {
     yield all([fork(watchFetchRequest)])
 }

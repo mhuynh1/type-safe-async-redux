@@ -1,26 +1,26 @@
 import { Reducer } from 'redux';
-import { PhotosState, PhotosActionTypes } from './1types';
+import { BusinessState, BusinessActionTypes } from './1types';
 
-// typing initialState as the PhotosState type to make it type-safe
-const initialState: PhotosState = {
+// typing initialState as the BusinessState type to make it type-safe
+const initialState: BusinessState = {
     data: [],
     isLoading: false,
     errors: ''
 }
 
-const reducer: Reducer<PhotosState> = (state = initialState, action) => {
+const reducer: Reducer<BusinessState> = (state = initialState, action) => {
     
     switch (action.type) {
-        case PhotosActionTypes.FETCH_PHOTOS_REQUEST: {
+        case BusinessActionTypes.FETCH_BUSINESSES_REQUEST: {
             
             return { ...state, isLoading: true }
         }
 
-        case PhotosActionTypes.FETCH_PHOTOS_SUCCESS: {
+        case BusinessActionTypes.FETCH_BUSINESSES_SUCCESS: {
             return { ...state, isLoading: false, data: action.payload }
         }
 
-        case PhotosActionTypes.FETCH_PHOTOS_FAILURE: {
+        case BusinessActionTypes.FETCH_BUSINESSES_FAILURE: {
             return { ...state, isLoading: false, errors: action.payload }
         }
         default: {
@@ -31,5 +31,5 @@ const reducer: Reducer<PhotosState> = (state = initialState, action) => {
 }
 
 // use named export to group the exports when you import them to index.js
-export { reducer as photosReducer }
+export { reducer as businessReducer }
 

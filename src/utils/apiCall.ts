@@ -2,8 +2,8 @@ export default function callApi(method: string, url: string, path: string, data?
   return fetch(url + path, {
     method,
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      Accept: 'application/json', 'Content-Type': 'application/json',
     },
     body: JSON.stringify(data)
   }).then(res => res.json())
