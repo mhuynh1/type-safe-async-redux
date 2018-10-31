@@ -1,7 +1,7 @@
 // 2 this is the response object for the GET
 export interface Business extends ApiResponse {
     name: string
-    img_url: string
+    image_url: string
     id: string
     location: Location
     rating: number
@@ -9,12 +9,15 @@ export interface Business extends ApiResponse {
 }
 
 interface Location {
-    address1: string
-    address2: boolean | string
-    address3: string
+    address1: string | null
+    address2: string | null
+    address3: string | null
     city: string
     country: string
+    state: string
+    zip_code: string
 }
+
 // 1 declare return type of api response
 export type ApiResponse = Record<string, any>;
 

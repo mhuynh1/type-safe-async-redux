@@ -1,14 +1,7 @@
 import React, { Fragment } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-const HomePage: React.SFC = () => {
-    return (
-        <Fragment>
-            <h2>HomePage</h2>
-            <Link to="/next">Go to Next Page</Link>
-        </Fragment>
-    )
-}
+import HomePage from './pages/Home';
 
 const NextPage: React.SFC = () => {
     return (
@@ -20,7 +13,6 @@ const NextPage: React.SFC = () => {
 
 const Routes: React.SFC = () => (
     <Fragment>
-        <h1>Main Header</h1>
         <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/next" component={NextPage} />
