@@ -2,30 +2,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'react-emotion';
 
-import { Business } from '../store/placeholderJson/1types';
+import { Business } from '../store/business/1types';
 
 interface ListingProps {
     business: Business
 }
 
-const BusinessListing: React.SFC<ListingProps> = ({ business }) => (
-    <Section className="gridItem">
-        <Image style={{ backgroundImage: `url(${business.image_url})` }}/>
-        <Info>
-            <Title>
-                <LinkStyled to='/'>{business.name}</LinkStyled>
-            </Title>
-            <Address>
-                <div className="address">
-                    {business.location.address1}
-                </div>
-                <div className="city">
-                    {`${business.location.city} ${business.location.state} ${business.location.zip_code}`}
-                </div>
-            </Address>
-        </Info>
-    </Section>
-)
+const BusinessListing: React.SFC<ListingProps> = ({ business }) => {
+    const { id, name, image_url, location } = business
+    const { address1: address, city, state, zip_code } = location
+
+    return (
+        < Section className="gridItem" >
+            <Image style={{ backgroundImage: `url(${image_url})` }} />
+            <Info>
+                <Title>
+                    <LinkStyled to={`/${id}/${name}`}>{name}</LinkStyled>
+                </Title>
+                <Address>
+                    <div className="address">
+                        {address}
+                    </div>
+                    <div className="city">
+                        {`${city} ${state} ${zip_code}`}
+                    </div>
+                </Address>
+            </Info>
+        </Section >
+    )
+}
 
 export default BusinessListing;
 

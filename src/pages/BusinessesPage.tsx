@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 
 import { StoreState } from '../store/index';
-import { Business } from '../store/placeholderJson/1types';
-import { fetchBusinessesRequest } from '../store/placeholderJson/2actions';
+import { Business } from '../store/business/1types';
+import { fetchBusinessesRequest, selectBiz } from '../store/business/2actions';
 
 import BusinessListing from '../components/BusinessListing';
 import Container from '../components/Container';
@@ -14,35 +14,32 @@ import Container from '../components/Container';
 // separate state props and dispatch props to their own interfaces
 interface PropsFromState {
     isLoading: boolean
-    data: Business[]
+    businesses: Business[]
     errors?: string
 }
 
 // map dispatch type to props
 interface PropsFromDispatch {
+    selectBiz: typeof selectBiz
     fetchBusinessesRequest: typeof fetchBusinessesRequest
 }
-
-// interface OwnProps {
-//     business: Business
-// }
 
 // combine component props and redux props into an intersection type
 type AllProps = PropsFromDispatch & PropsFromState
 
-class HomePage extends Component<AllProps> {
+class BusinessesPage extends Component<AllProps> {
     componentDidMount() {
         this.props.fetchBusinessesRequest()
     }
 
     public render() {
+        const { businesses } = this.props
 
-        const { data } = this.props
         return (
             <Fragment>
                 <Link to='/next'>go to next page</Link>
                 <Container className="gridContainer">
-                    {data.map(bus => <BusinessListing business={bus} key={bus.id} />)}
+                    {businesses.map(bus => <BusinessListing business={bus} key={bus.id} />)}
                 </Container>
             </Fragment>
         );
@@ -53,15 +50,14 @@ const mapStateToProps = ({ businesses }: StoreState) => {
     return {
         isLoading: businesses.isLoading,
         errors: businesses.errors,
-        data: businesses.data
+        businesses: businesses.businesses
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-
     return {
         fetchBusinessesRequest: () => dispatch(fetchBusinessesRequest())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, mapDispatchToProps)(BusinessesPage)

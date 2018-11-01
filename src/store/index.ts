@@ -1,9 +1,9 @@
 import { combineReducers, Dispatch, Action, AnyAction } from 'redux';
 import { all, fork } from 'redux-saga/effects';
 
-import { businessReducer } from './placeholderJson/3reducers';
-import { BusinessState } from './placeholderJson/1types';
-import businessSaga from './placeholderJson/4sagas';
+import { businessReducer } from './business/3reducers';
+import { BusinessState } from './business/1types';
+import businessSaga from './business/4sagas';
 
 // 1 this is the top level state object that will combine all of the states from every context
 export interface StoreState {

@@ -1,4 +1,4 @@
-export default function callApi(method: string, url: string, path: string, data?: any) {
+export function callApi(method: string, url: string, path: string, data?: any) {
   return fetch(url + path, {
     method,
     headers: {
