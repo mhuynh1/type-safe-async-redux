@@ -3,8 +3,9 @@ export function callApi(method: string, url: string, path: string, data?: any) {
     method,
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-      Accept: 'application/json', 'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
-  }).then(res => res.json())
+  }).then(res => res.json());
 }
