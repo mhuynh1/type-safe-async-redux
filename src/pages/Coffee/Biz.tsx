@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { RouteComponentProps } from "react-router";
 
+import Spinner from "../../components/Spinner";
 import {
   fetchReviewsRequest,
   fetchBusinessesRequest,
@@ -56,7 +57,7 @@ class Biz extends Component<AllProps> {
   }
 
   public render() {
-    const { businesses, match, reviews } = this.props;
+    const { businesses, match, reviews, isLoading } = this.props;
 
     const biz: Business | undefined = businesses.find(
       biz => biz.name === match.params.name
@@ -78,7 +79,8 @@ class Biz extends Component<AllProps> {
 
     return (
       <Fragment>
-        {biz && (
+        {isLoading && <Spinner />}
+        {!isLoading && biz && (
           <Container>
             <BlurContainer>
               <BlurImage style={{ backgroundImage: `url(${biz.image_url})` }} />

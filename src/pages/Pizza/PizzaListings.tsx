@@ -9,7 +9,7 @@ import {
   fetchBusinessesRequest,
   selectBiz
 } from "../../store/business/2actions";
-
+import Spinner from '../../components/Spinner'
 import BusinessListing from "../../components/BusinessListing";
 import Container from "../../components/Container";
 
@@ -35,15 +35,16 @@ class PizzaListings extends Component<AllProps> {
   }
 
   public render() {
-    const { businesses, match } = this.props;
+    const { businesses, match, isLoading } = this.props;
 
     return (
       <Fragment>
-        <Container className="gridContainer">
+        {isLoading && <Spinner />}
+        {!isLoading && <Container className="gridContainer">
           {businesses.map(bus => (
             <BusinessListing path={match.path} business={bus} key={bus.id} />
           ))}
-        </Container>
+        </Container>}
       </Fragment>
     );
   }
